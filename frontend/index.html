@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Topo Gantt - Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@1.1.0/dist/frappe-gantt.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header class="page-header">
+        <div class="algo-selector">
+            <span class="algo-label">Algorithm:</span>
+            <div class="algo-options" role="group" aria-label="Topological sort algorithm">
+                <label class="algo-option algo-option--cypher">
+                    <input type="radio" name="algo" value="cypher" id="algoCypher" checked>
+                    <span>Cypher</span>
+                </label>
+                <label class="algo-option algo-option--gds">
+                    <input type="radio" name="algo" value="gds" id="algoGds">
+                    <span>GDS</span>
+                </label>
+            </div>
+        </div>
+        <h1>Topological Sort - Critical Path</h1>
+    </header>
+    
+    <div class="control-panel">
+        <div class="controls-left">
+            <div class="form-group">
+                <label for="root">Root WorkOrder</label>
+                <input type="text" id="root" placeholder="e.g. 25005598260">
+            </div>
+            <button id="loadBaseline">Load Baseline</button>
+            
+            <div class="separator"></div>
+            
+            <div class="form-group">
+                <label for="incidentWo">Incident WorkOrder</label>
+                <select id="incidentWo" disabled>
+                    <option value="">-- Load baseline first --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="delayDays">Delay (days)</label>
+                <input type="number" id="delayDays" value="2" min="0" step="0.5" disabled>
+            </div>
+            <button id="loadIncident" class="btn-incident" disabled>Simulate</button>
+            
+            <label class="toggle-label">
+                <input type="checkbox" id="filterCritical">
+                <span class="toggle-switch"></span>
+                <span>Critical only</span>
+            </label>
+        </div>
+        
+        <div class="controls-right">
+            <div class="kpi">
+                <div class="kpi-value" id="kpiBaseline">-</div>
+                <div class="kpi-label">Baseline</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value" id="kpiIncident">-</div>
+                <div class="kpi-label">Incident</div>
+            </div>
+            <div class="kpi kpi-delta" id="kpiDeltaContainer">
+                <div class="kpi-value" id="kpiDelta">-</div>
+                <div class="kpi-label">Delta</div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-color critical"></span> Critical</div>
+                <div class="legend-item"><span class="legend-color both"></span> Critical + Incident</div>
+                <div class="legend-item"><span class="legend-color incident"></span> Incident (not Critical)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="error-message" id="errorMessage"></div>
+    
+    <div class="gantt-wrapper">
+        <div class="gantt-panel">
+            <div class="gantt-header"><span>Baseline</span><span class="timing-pills" id="baselineTimings"></span></div>
+            <div class="gantt-content" id="ganttBaseline">
+                <div class="gantt-placeholder">Enter a root WorkOrder and click "Load Baseline"</div>
+            </div>
+        </div>
+        <div class="gantt-panel">
+            <div class="gantt-header incident"><span>Incident</span><span class="timing-pills" id="incidentTimings"></span></div>
+            <div class="gantt-content" id="ganttIncident">
+                <div class="gantt-placeholder">Select an incident WO and click "Simulate"</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@1.1.0/dist/frappe-gantt.umd.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>

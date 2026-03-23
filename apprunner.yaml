@@ -1,0 +1,25 @@
+# AWS App Runner – config dans le repo (recommandé pour Python 3.11)
+# Voir https://docs.aws.amazon.com/apprunner/latest/dg/config-file.html
+version: 1.0
+runtime: python311
+
+build:
+  commands:
+    build:
+      - python3 -m pip install -r requirements.txt
+
+run:
+  runtime-version: "3.11"
+  pre-run:
+    - python3 -m pip install -r requirements.txt
+  command: python3 -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+  network:
+    port: 8000
+  env:
+  secrets:
+    - name: NEO4J_URI
+      value-from: "/ah-tri-topo/NEO4J_URI"
+    - name: NEO4J_USER
+      value-from: "/ah-tri-topo/NEO4J_USER"
+    - name: NEO4J_PASSWORD
+      value-from: "/ah-tri-topo/NEO4J_PASSWORD"
