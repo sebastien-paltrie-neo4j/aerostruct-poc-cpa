@@ -14,7 +14,7 @@ from .neo4j_client import Neo4jClient
 from .queries_cypher import calculate_critical_path
 from .queries_gds import calculate_critical_path_gds
 
-app = FastAPI(title="Tri Topo Gantt Demo", version="1.0.0")
+app = FastAPI(title="CPA / Topological Sort Demo", version="1.0.0")
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 app.add_middleware(

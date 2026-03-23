@@ -1,4 +1,4 @@
-# Tri Topo Gantt Demo
+# CPA / Topological Sort Demo
 
 Topological sort demo with incident simulation on Neo4j: two side-by-side Gantt charts (baseline vs incident) with critical path highlighting. Two backends available: **Cypher** (full Cypher) or **GDS** (APOC subgraph → project → longestPath → drop).
 

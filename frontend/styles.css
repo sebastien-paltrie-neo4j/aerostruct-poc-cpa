@@ -71,7 +71,7 @@ body {
     font-weight: 500;
 }
 
-/* Cypher sélectionné : bleu */
+/* Cypher selected: blue */
 .algo-option--cypher:has(input:checked) {
     background: #e8f0fa;
     color: #4a90d9;
@@ -80,7 +80,7 @@ body {
     color: #4a90d9;
 }
 
-/* GDS sélectionné : vert */
+/* GDS selected: green */
 .algo-option--gds:has(input:checked) {
     background: #e8f5e9;
     color: #16a085;

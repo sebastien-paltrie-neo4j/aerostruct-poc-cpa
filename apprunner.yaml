@@ -1,5 +1,5 @@
-# AWS App Runner – config dans le repo (recommandé pour Python 3.11)
-# Voir https://docs.aws.amazon.com/apprunner/latest/dg/config-file.html
+# AWS App Runner — repo-based config (Python 3.11)
+# See https://docs.aws.amazon.com/apprunner/latest/dg/config-file.html
 version: 1.0
 runtime: python311
 

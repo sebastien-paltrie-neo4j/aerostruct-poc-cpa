@@ -1,5 +1,5 @@
 // =============================================================================
-// Data preparation script for the Tri Topo Gantt demo
+// Data preparation script for the CPA / topological sort Gantt demo
 // Run once in Neo4j Browser before starting the application
 // =============================================================================
 
