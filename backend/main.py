@@ -11,6 +11,8 @@ from fastapi.staticfiles import StaticFiles
 
 from .neo4j_client import Neo4jClient
 
+logger = logging.getLogger(__name__)
+
 app = FastAPI(title="CPA Workshop", version="0.1.0")
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
