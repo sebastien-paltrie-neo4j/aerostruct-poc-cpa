@@ -7,6 +7,20 @@ from neo4j import GraphDatabase
 load_dotenv()
 
 
+def _require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if value is None or not str(value).strip():
+        raise RuntimeError(
+            f"Missing or empty {name}. Copy .env.example to .env and set all Neo4j variables."
+        )
+    return str(value).strip()
+
+
+NEO4J_URI = _require_env("NEO4J_URI")
+NEO4J_USER = _require_env("NEO4J_USER")
+NEO4J_PASSWORD = _require_env("NEO4J_PASSWORD")
+
+
 class Neo4jClient:
     _driver = None
 
@@ -14,8 +28,8 @@ class Neo4jClient:
     def get_driver(cls):
         if cls._driver is None:
             cls._driver = GraphDatabase.driver(
-                os.getenv("NEO4J_URI", "bolt://localhost:7687"),
-                auth=(os.getenv("NEO4J_USER", "neo4j"), os.getenv("NEO4J_PASSWORD", "")),
+                NEO4J_URI,
+                auth=(NEO4J_USER, NEO4J_PASSWORD),
             )
         return cls._driver
 
